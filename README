@@ -1,0 +1,37 @@
+Use this script as a model of how to use the geo_api module.
+
+https://github.com/andrewdyates/kun_oral_cancer_fetcher
+
+When you run the fetch.py in this directory, it should prompt you to
+sent a few environment variables:
+
+CACHE_DIR
+TMP_DIR
+
+You can use this script as a model of how to use the geo_api module.
+
+If you set ENV=SERVER, then you may also specify a log file path by
+setting LOGFILE. Otherwise, the log will be written to STDERR.
+
+---------
+
+The cleaned data files are saved in the client script
+https://github.com/andrewdyates/kun_oral_cancer_fetcher/blob/master/fetch.py
+
+Run the script like:
+$ cat my-gse-list.txt | python fetch.py 2>> mylog.txt
+
+
+The important lines of code are:
+
+# Create the GSE study object instance of "GSE" from a gse ID string
+like 'GSE12345'
+# =====
+g = geo_api.GSE(gse_id)
+
+# Create a filter object instance of "EQTLFilter" from a GSE study object
+filt = geo_api.EQTLFilter(g)
+
+# For each row in the filtered GSE study data, fetch a list of columns.
+for row in filt.get_rows():
+ fp.write("\t".join(row)); fp.write("\n")
