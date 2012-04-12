@@ -1,0 +1,8 @@
+*.gzip
+*~
+.DS*
+Icon*
+.dropbox
+*.pyc
+gse_list_iter.txt
+log*.txt
